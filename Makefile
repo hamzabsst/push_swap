@@ -1,26 +1,29 @@
-C = cc
+#---------------------------------compile------------------------------------#
+CC = cc
 CFLAGS = -Wall -Werror -Wextra
 
-NAME = stack
-
+#------------------------------------lib-------------------------------------#
+NAME = push_swap
 MYLIB_DIR = mylib
-MYLIB = mylib/myLib.a
+MYLIB = $(MYLIB_DIR)/myLib.a
 
-SRCS =
-
+#---------------------------------sources------------------------------------#
+SRCS = src/push_swap.c
 OBJS = $(SRCS:.c=.o)
 
 all: $(MYLIB) $(NAME)
 
 $(MYLIB):
-		@$(MAKE) -C mylib
+		@$(MAKE) -C $(MYLIB_DIR)
 
-%.o: %.c inc/stack.h
-		@$(C) $(CFLAGS) -c $< -o $@
+%.o: %.c inc/push_swap.h
+		@$(CC) $(CFLAGS) -c $< -o $@
 
 
 $(NAME): $(OBJS) $(MYLIB)
-		@$(C) $(CFLAGS) $(OBJS) $(MYLIB) -o $(NAME)
+		@$(CC) $(CFLAGS) $(OBJS) $(MYLIB) -o $(NAME)
+
+#---------------------------------clean--------------------------------------#
 
 clean:
 		@rm -f $(OBJS)

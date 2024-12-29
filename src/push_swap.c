@@ -6,9 +6,8 @@
 /*   By: hbousset < hbousset@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 10:52:38 by hbousset          #+#    #+#             */
-/*   Updated: 2024/12/28 10:53:54 by hbousset         ###   ########.fr       */
+/*   Updated: 2024/12/29 13:08:04 by hbousset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stack.h>
-
+#include "../inc/push_swap.h"

@@ -9,8 +9,6 @@ SRCS =	$(FILES)
 
 OBJS = ${SRCS:.c=.o}
 
-OBJB = ${SRCSB:.c=.o}
-
 all: ${NAME}
 
 ${NAME}: ${OBJS}

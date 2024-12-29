@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_atol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hbousset < hbousset@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/23 14:46:43 by hbousset          #+#    #+#             */
-/*   Updated: 2024/12/29 10:00:35 by hbousset         ###   ########.fr       */
+/*   Created: 2024/12/29 12:55:43 by hbousset          #+#    #+#             */
+/*   Updated: 2024/12/29 13:03:58 by hbousset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static char	*skip(const char *str)
 	return ((char *)str + i);
 }
 
-int	ft_atoi(const char	*str)
+long	ft_atol(const char	*str)
 {
 	long	result;
 	int		sign;
@@ -48,11 +48,5 @@ int	ft_atoi(const char	*str)
 		string++;
 		max = result;
 	}
-	return ((int)result * sign);
+	return (result * sign);
 }
-/* int main()
-{
-	char *str = "-11111111";
-	printf("%d\n", ft_atoi(str));
-	printf("%d\n", atoi(str));
-} */
