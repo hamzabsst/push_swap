@@ -8,7 +8,9 @@ MYLIB_DIR = mylib
 MYLIB = $(MYLIB_DIR)/myLib.a
 
 #---------------------------------sources------------------------------------#
-SRCS = src/push_swap.c
+SRCS = src/init_stack.c \
+		src/main.c \
+
 OBJS = $(SRCS:.c=.o)
 
 all: $(MYLIB) $(NAME)
