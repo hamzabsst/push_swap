@@ -5,88 +5,51 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hbousset < hbousset@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/29 13:48:29 by hbousset          #+#    #+#             */
-/*   Updated: 2024/12/30 08:43:46 by hbousset         ###   ########.fr       */
+/*   Created: 2024/12/30 15:00:06 by hbousset          #+#    #+#             */
+/*   Updated: 2024/12/31 09:10:47 by hbousset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 
-t_stack	*create_stack(void)
+void	init_stack(t_stack **a, char **av)
 {
-	t_stack	*stack;
+	long	value;
+	int		i;
 
-	stack = malloc(sizeof(t_stack));
-	if (!stack)
-		return (NULL);
-	stack->top = NULL;
-	stack->size = 0;
-	return (stack);
+	i = 0;
+	while (av[i])
+	{
+		if (errors(av[i]))
+		{
+			free_errors(*a);
+			write(2, "Error\n", 6);
+		}
+		value = ft_atol(av[i]);
+		if (value > INT_MAX || value < INT_MIN)
+		{
+			free_errors(*a);
+			write(2, "Error\n", 6);
+		}
+		dub(*a, (int)value);
+		add(a, (int)value);
+		i++;
+	}
 }
 
-void	push(t_stack *stack, int value)
+void	add(t_stack **a, int value)
 {
 	t_node	*new_node;
 
 	new_node = malloc(sizeof(t_node));
+	if (!new_node)
+		free_errors(*a);
 	new_node->value = value;
-	new_node->next = stack->top;
-	stack->top = new_node;
-	stack->size++;
+	new_node->next = (*a)->head;
+	new_node->previous = NULL;
+
+	if ((*a)->head)
+		(*a)->head->previous = new_node;
+	(*a)->head = new_node;
+	(*a)->size++;
 }
-
-int	is_empty(t_stack *stack)
-{
-	return (stack->size == 0);
-}
-
-void	free_stack(t_stack *stack)
-{
-	t_node	*current;
-	t_node	*next_node;
-
-	current = stack->top;
-	while (current)
-	{
-		next_node = current->next;
-		free (current);
-		current = next_node;
-	}
-	free (stack);
-}
-/* int	find_min(t_stack *stack)
-{
-	t_node	*current;
-	int		min;
-
-	current = stack->top;
-	min = current->value;
-
-	if (is_empty(stack))
-		return (-1);
-	while (current)
-	{
-		if (current->value < min)
-			min = current->next;
-		current = current->next;
-	}
-	return (min);
-}
-void	sort_stack(t_stack *a, t_stack *b)
-{
-	int	min;
-	int	value;
-
-	if (!is_empty(a))
-	{
-		min = find_min(a);
-		while (a->top->value != min)
-		{
-			ra(a);
-			ft_printf("a");
-		}
-
-
-
-	}
-} */
