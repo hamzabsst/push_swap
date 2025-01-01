@@ -6,7 +6,7 @@
 /*   By: hbousset < hbousset@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 10:52:38 by hbousset          #+#    #+#             */
-/*   Updated: 2025/01/01 10:30:06 by hbousset         ###   ########.fr       */
+/*   Updated: 2025/01/01 15:23:03 by hbousset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,9 @@ int	main(int ac, char **av)
 	init_stack(&a, arv);
 	if(ac == 2)
 		free_split(arv, 0);
-	ft_printf("Stack a:\n");
-	print(a);
+
+	free_stack(&b);
 	free_stack(&a);
-	return (0);
 }
 void	print(t_stack *stack)
 {
