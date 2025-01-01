@@ -6,7 +6,7 @@
 /*   By: hbousset < hbousset@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 15:00:06 by hbousset          #+#    #+#             */
-/*   Updated: 2025/01/01 10:16:01 by hbousset         ###   ########.fr       */
+/*   Updated: 2025/01/01 15:24:31 by hbousset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	init_stack(t_stack **a, char **av)
 		i++;
 	}
 }
-
 
 void	add_node(t_stack **stack, int value)
 {

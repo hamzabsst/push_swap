@@ -6,7 +6,7 @@
 /*   By: hbousset < hbousset@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 08:52:41 by hbousset          #+#    #+#             */
-/*   Updated: 2025/01/01 11:34:57 by hbousset         ###   ########.fr       */
+/*   Updated: 2025/01/01 15:24:40 by hbousset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	r_rotate(t_stack **stack)
 {
 	t_stack	*first_node;
 	t_stack	*last_node;
-	t_stack *before_last_node;
+	t_stack	*before_last_node;
 
 	first_node = *stack;
 	if (stack == NULL || first_node == NULL || first_node->next == NULL)
