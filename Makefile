@@ -8,7 +8,8 @@ NAME = push_swap
 
 SRCS = src/init_stack.c \
 		src/main.c \
-		src/errors.c \
+		src/check_errors.c \
+		src/stack_utils.c \
 
 OBJS = $(SRCS:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: hbousset < hbousset@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 15:00:06 by hbousset          #+#    #+#             */
-/*   Updated: 2024/12/31 09:10:47 by hbousset         ###   ########.fr       */
+/*   Updated: 2025/01/01 10:16:01 by hbousset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,36 +20,49 @@ void	init_stack(t_stack **a, char **av)
 	i = 0;
 	while (av[i])
 	{
-		if (errors(av[i]))
-		{
-			free_errors(*a);
-			write(2, "Error\n", 6);
-		}
+		if (check_errors(av[i]))
+			free_errors(a);
 		value = ft_atol(av[i]);
 		if (value > INT_MAX || value < INT_MIN)
-		{
-			free_errors(*a);
-			write(2, "Error\n", 6);
-		}
-		dub(*a, (int)value);
-		add(a, (int)value);
+			free_errors(a);
+		if (check_duplicate(*a, (int)value))
+			free_errors(a);
+		add_node(a, (int)value);
 		i++;
 	}
 }
 
-void	add(t_stack **a, int value)
+
+void	add_node(t_stack **stack, int value)
 {
-	t_node	*new_node;
+	t_stack	*new_node;
+	t_stack	*last_node;
 
-	new_node = malloc(sizeof(t_node));
+	if (!stack)
+		return ;
+	new_node = create_node(value);
+	if (! (*stack))
+	{
+		*stack = new_node;
+		new_node->prev = NULL;
+	}
+	else
+	{
+		last_node = is_last(*stack);
+		last_node->next = new_node;
+		new_node->prev = last_node;
+	}
+}
+
+t_stack	*create_node(int value)
+{
+	t_stack	*new_node;
+
+	new_node = malloc(sizeof(t_stack));
 	if (!new_node)
-		free_errors(*a);
+		return (NULL);
 	new_node->value = value;
-	new_node->next = (*a)->head;
-	new_node->previous = NULL;
-
-	if ((*a)->head)
-		(*a)->head->previous = new_node;
-	(*a)->head = new_node;
-	(*a)->size++;
+	new_node->next = NULL;
+	new_node->cheapest = 0;
+	return (new_node);
 }

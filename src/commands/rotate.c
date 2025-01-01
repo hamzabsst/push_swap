@@ -6,7 +6,7 @@
 /*   By: hbousset < hbousset@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/29 18:34:59 by hbousset          #+#    #+#             */
-/*   Updated: 2024/12/30 13:45:15 by hbousset         ###   ########.fr       */
+/*   Updated: 2025/01/01 09:42:07 by hbousset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,18 @@
 
 static void	rotate(t_stack **stack)
 {
+	t_stack	*last_node;
 
+	if (stack == NULL || *stack == NULL)
+		return ;
+	last_node = is_last(stack);
+	last_node->next = *stack;
+	*stack = (*stack)->next;
+	(*stack)->prev = NULL;
+	last_node->next->prev = last_node;
+	last_node->next->next = NULL;
 }
+
 void	ra(t_stack **a)
 {
 	rotate(a);
