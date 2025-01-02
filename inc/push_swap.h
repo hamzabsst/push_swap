@@ -6,7 +6,7 @@
 /*   By: hbousset < hbousset@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 10:13:54 by hbousset          #+#    #+#             */
-/*   Updated: 2025/01/02 09:37:19 by hbousset         ###   ########.fr       */
+/*   Updated: 2025/01/02 13:17:57 by hbousset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,6 @@ typedef struct s_stack
 	int					value;
 	int					index;
 	int					cost;
-	bool				above_median;
-	bool				cheapest;
-	struct s_stack		*pivot;
 	struct s_stack		*next;
 	struct s_stack		*prev;
 }						t_stack;
@@ -48,7 +45,9 @@ int		find_median(t_stack **a);
 
 //sorts
 void	bubble_sort(int *values, int size);
-t_stack	**sort_3(t_stack **a);
+void	sort_3(t_stack **a);
+void	split_stack(t_stack **a, t_stack **b);
+void	sort_stack(t_stack **a, t_stack **b);
 
 // commands
 void	sa(t_stack **a);

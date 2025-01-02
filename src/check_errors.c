@@ -6,7 +6,7 @@
 /*   By: hbousset < hbousset@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 14:59:31 by hbousset          #+#    #+#             */
-/*   Updated: 2025/01/01 16:36:31 by hbousset         ###   ########.fr       */
+/*   Updated: 2025/01/02 12:52:47 by hbousset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,5 @@ void	free_errors(t_stack **a)
 {
 	free_stack(a);
 	ft_printf("Error\n");
-	exit(1);
+	exit(EXIT_FAILURE);
 }

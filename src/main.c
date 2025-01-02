@@ -6,7 +6,7 @@
 /*   By: hbousset < hbousset@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 10:52:38 by hbousset          #+#    #+#             */
-/*   Updated: 2025/01/02 09:40:11 by hbousset         ###   ########.fr       */
+/*   Updated: 2025/01/02 12:57:27 by hbousset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,13 @@ int	main(int ac, char **av)
 	if (ac == 2)
 		free_split(arv, 0);
 	if (!is_sorted(a))
-	{
-		if (stack_len(a) == 2)
-			sa(&a);
-		else if (stack_len(a) == 3)
-			sort_3(&a);
-	}
-	free_stack(&b);
+		sort_stack(&a, &b);
+	ft_printf("%s\n", "stack a is");
+	print(a);
+	ft_printf("%s\n", "stack b is");
+	print(b);
 	free_stack(&a);
+	free_stack(&b);
 }
 
 void	print(t_stack *stack)
