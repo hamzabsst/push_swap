@@ -14,6 +14,7 @@ SRCS = src/init_stack.c \
 		src/commands/r_rotate.c \
 		src/commands/rotate.c \
 		src/commands/swap.c \
+		src/sorting/tiny_sorts.c \
 
 OBJS = $(SRCS:.c=.o)
 
