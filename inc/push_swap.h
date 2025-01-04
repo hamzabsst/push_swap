@@ -6,7 +6,7 @@
 /*   By: hbousset < hbousset@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 10:13:54 by hbousset          #+#    #+#             */
-/*   Updated: 2025/01/04 17:50:43 by hbousset         ###   ########.fr       */
+/*   Updated: 2025/01/04 18:11:10 by hbousset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,12 @@ void	free_errors(t_stack **a);
 t_stack	*is_last(t_stack *head);
 int		find_max(t_stack *stack);
 int		stack_len(t_stack *stack);
-int		is_sorted(t_stack *a);
 int		find_min(t_stack *stack);
+int		find_second_min(t_stack *stack);
 
 // stack utils 2
-int		find_second_min(t_stack *stack);
+int		is_sorted(t_stack *a);
+void	indexing(t_stack *stack);
 
 //sorts
 void	sort_3(t_stack **a);
