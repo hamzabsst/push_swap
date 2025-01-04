@@ -6,19 +6,24 @@
 /*   By: hbousset < hbousset@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 10:52:38 by hbousset          #+#    #+#             */
-/*   Updated: 2025/01/02 12:57:27 by hbousset         ###   ########.fr       */
+/*   Updated: 2025/01/04 08:39:05 by hbousset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 
-static void	*free_split(char **str, int index)
+static void	*free_split(char **str)
 {
 	int	i;
 
+	if (!str)
+		return (NULL);
 	i = 0;
-	while (i < index)
-		free (str[i++]);
+	while (str[i])
+	{
+		free (str[i]);
+		i++;
+	}
 	free(str);
 	return (NULL);
 }
@@ -39,7 +44,7 @@ int	main(int ac, char **av)
 		arv = av + 1;
 	init_stack(&a, arv);
 	if (ac == 2)
-		free_split(arv, 0);
+		free_split(arv);
 	if (!is_sorted(a))
 		sort_stack(&a, &b);
 	ft_printf("%s\n", "stack a is");

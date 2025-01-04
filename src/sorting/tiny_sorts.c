@@ -6,17 +6,11 @@
 /*   By: hbousset < hbousset@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 16:19:15 by hbousset          #+#    #+#             */
-/*   Updated: 2025/01/02 13:39:04 by hbousset         ###   ########.fr       */
+/*   Updated: 2025/01/04 09:24:21 by hbousset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/push_swap.h"
-
-static void	sa_ra(t_stack **a)
-{
-	sa(a);
-	ra(a);
-}
 
 void	sort_3(t_stack **a)
 {
@@ -24,26 +18,17 @@ void	sort_3(t_stack **a)
 	int	second;
 	int	third;
 
-	first = (*a)->value;
-	second = (*a)->next->value;
-	third = (*a)->next->next->value;
-	if (first < second && second < third)
-		return;
-	if (first > second && second < third && first > third)
-		sa_ra(a);
-	else if (first > second && second < third && first < third)
-		ra(a);
-	else if (first < second && second > third && first < third)
+	while (!is_sorted(*a))
 	{
-		sa(a);
-		rra(a);
-	}
-	else if (first < second && second > third && first > third)
-		rra(a);
-	else if (first > second && second > third)
-	{
-		sa(a);
-		rra(a);
+		first = (*a)->value;
+		second = (*a)->next->value;
+		third = (*a)->next->next->value;
+		if (first > second && first > third)
+			ra(a);
+		else if (second > first && second > third)
+			rra(a);
+		else if (first > second)
+			sa(a);
 	}
 }
 
@@ -81,7 +66,7 @@ void	split_stack(t_stack **a, t_stack **b)
 	size = stack_len(*a);
 	median = find_median(a);
 	if (size <= 3)
-		return;
+		return ;
 	while (size > 3)
 	{
 		if ((*a)->value > median)
