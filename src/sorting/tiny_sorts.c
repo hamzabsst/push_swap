@@ -6,7 +6,7 @@
 /*   By: hbousset < hbousset@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 16:19:15 by hbousset          #+#    #+#             */
-/*   Updated: 2025/01/04 09:24:21 by hbousset         ###   ########.fr       */
+/*   Updated: 2025/01/04 14:35:56 by hbousset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,51 +32,25 @@ void	sort_3(t_stack **a)
 	}
 }
 
-void	bubble_sort(int *values, int size)
+void	sort_5(t_stack **a, t_stack **b)
 {
-	int		i;
-	int		j;
-	int		temp;
+	int	pushed;
 
-	i = 0;
-	while (i < size - 1)
+	pushed = 0;
+	while (stack_len(*a) > 3 && pushed < 2)
 	{
-		j = 0;
-		while (j < size - i - 1)
-		{
-			if (values[j] > values[j + 1])
-			{
-				temp = values[j];
-				values[j] = values[j + 1];
-				values[j + 1] = temp;
-			}
-			j++;
-		}
-		i++;
-	}
-}
-
-void	split_stack(t_stack **a, t_stack **b)
-{
-	int	median;
-	int	size;
-
-	if (!a || !(*a))
-		return ;
-	size = stack_len(*a);
-	median = find_median(a);
-	if (size <= 3)
-		return ;
-	while (size > 3)
-	{
-		if ((*a)->value > median)
+		if ((*a)->value == find_min(*a) || (*a)->value == find_second_min(*a))
 		{
 			pb(b, a);
-			size--;
+			pushed++;
 		}
 		else
 			ra(a);
-		median = find_median(a);
 	}
-	sort_3(a);
+	if (stack_len(*a) == 3)
+		sort_3(a);
+	if (stack_len(*b) == 2 && (*b)->value < (*b)->next->value)
+		sb(b);
+	pa(a ,b);
+	pa(a ,b);
 }

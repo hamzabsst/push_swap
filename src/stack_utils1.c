@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_stack.c                                       :+:      :+:    :+:   */
+/*   stack_utils1.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hbousset < hbousset@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/02 10:28:05 by hbousset          #+#    #+#             */
-/*   Updated: 2025/01/04 14:26:08 by hbousset         ###   ########.fr       */
+/*   Created: 2025/01/04 10:36:25 by hbousset          #+#    #+#             */
+/*   Updated: 2025/01/04 13:42:16 by hbousset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/push_swap.h"
+#include "../inc/push_swap.h"
 
-void	sort_stack(t_stack **a, t_stack **b)
+int	find_second_min(t_stack *stack)
 {
-	if (!a || !(*a))
-		return;
-	if (stack_len(*a) == 3)
-		sort_3(a);
-	else if (stack_len(*a) == 2)
-		sa(a);
-	else if (stack_len(*a) <= 5)
-		sort_5(a, b);
+	int		min;
+	int		second_min;
+
+	if (!stack)
+		return (0);
+	min = find_min(stack);
+	second_min = INT_MAX;
+	while (stack)
+	{
+		if (stack->value != min && stack->value < second_min)
+			second_min = stack->value;
+		stack = stack->next;
+	}
+	return (second_min);
 }

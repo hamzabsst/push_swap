@@ -10,6 +10,7 @@ SRCS = src/init_stack.c \
 		src/main.c \
 		src/check_errors.c \
 		src/stack_utils.c \
+		src/stack_utils1.c \
 		src/commands/push.c \
 		src/commands/r_rotate.c \
 		src/commands/rotate.c \
