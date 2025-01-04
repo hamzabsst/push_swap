@@ -6,7 +6,7 @@
 /*   By: hbousset < hbousset@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 16:19:15 by hbousset          #+#    #+#             */
-/*   Updated: 2025/01/04 14:35:56 by hbousset         ###   ########.fr       */
+/*   Updated: 2025/01/04 17:37:38 by hbousset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,19 @@ void	sort_3(t_stack **a)
 	}
 }
 
+void	sort_4(t_stack **a, t_stack **b)
+{
+	int	min;
+
+	min = find_min(*a);
+	while ((*a)->value != min)
+		ra(a);
+	pb(b, a);
+	if (stack_len(*a) == 3)
+		sort_3(a);
+	pa(a, b);
+}
+
 void	sort_5(t_stack **a, t_stack **b)
 {
 	int	pushed;
@@ -51,6 +64,6 @@ void	sort_5(t_stack **a, t_stack **b)
 		sort_3(a);
 	if (stack_len(*b) == 2 && (*b)->value < (*b)->next->value)
 		sb(b);
-	pa(a ,b);
-	pa(a ,b);
+	pa(a, b);
+	pa(a, b);
 }

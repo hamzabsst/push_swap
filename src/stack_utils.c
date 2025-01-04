@@ -6,7 +6,7 @@
 /*   By: hbousset < hbousset@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 09:21:30 by hbousset          #+#    #+#             */
-/*   Updated: 2025/01/04 13:39:13 by hbousset         ###   ########.fr       */
+/*   Updated: 2025/01/04 17:38:02 by hbousset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ int	find_max(t_stack *stack)
 	}
 	return (max);
 }
+
 int	find_min(t_stack *stack)
 {
 	int		min;
