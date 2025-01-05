@@ -6,7 +6,7 @@
 /*   By: hbousset < hbousset@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 10:13:54 by hbousset          #+#    #+#             */
-/*   Updated: 2025/01/04 18:11:10 by hbousset         ###   ########.fr       */
+/*   Updated: 2025/01/05 10:56:56 by hbousset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,6 @@
 typedef struct s_stack
 {
 	int					value;
-	int					index;
-	int					cost;
-	bool				above_median;
-	bool				cheapest;
-	struct s_stack		*target;
 	struct s_stack		*next;
 	struct s_stack		*prev;
 }						t_stack;
