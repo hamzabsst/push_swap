@@ -6,7 +6,7 @@
 /*   By: hbousset < hbousset@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 10:13:54 by hbousset          #+#    #+#             */
-/*   Updated: 2025/01/05 10:56:56 by hbousset         ###   ########.fr       */
+/*   Updated: 2025/01/05 10:59:15 by hbousset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ int		find_second_min(t_stack *stack);
 
 // stack utils 2
 int		is_sorted(t_stack *a);
-void	indexing(t_stack *stack);
 
 //sorts
 void	sort_3(t_stack **a);
