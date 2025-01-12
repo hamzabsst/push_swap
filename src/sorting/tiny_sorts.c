@@ -6,7 +6,7 @@
 /*   By: hbousset < hbousset@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 16:19:15 by hbousset          #+#    #+#             */
-/*   Updated: 2025/01/04 17:37:38 by hbousset         ###   ########.fr       */
+/*   Updated: 2025/01/12 13:20:18 by hbousset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,53 @@ void	sort_5(t_stack **a, t_stack **b)
 		sb(b);
 	pa(a, b);
 	pa(a, b);
+}
+
+void	push_back_to_a(t_stack **a, t_stack **b)
+{
+	int	max_index;
+
+	while (*b)
+	{
+		max_index = find_max_index(*b);
+		bring_to_top(b, max_index);
+		pa(a, b);
+		if ((*a)->index > (*a)->next->index)
+			ra(a);
+	}
+}
+
+void	bring_to_top(t_stack **b, int target_index)
+{
+	int	pos;
+	int	size;
+
+	size = stack_len(*b);
+	pos = find_position(*b, target_index);
+	if (pos == -1)
+		return;
+	if (pos <= size / 2)
+	{
+		while ((*b)->index != target_index)
+			rb(b);
+	}
+	else
+	{
+		while ((*b)->index != target_index)
+				rrb(b);
+	}
+}
+
+int find_position(t_stack *b, int target_index)
+{
+	int position = 0;
+
+	while (b)
+	{
+		if (b->index == target_index)
+			return (position);
+		b = b->next;
+		position++;
+	}
+	return (-1);
 }

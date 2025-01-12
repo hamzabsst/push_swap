@@ -6,7 +6,7 @@
 /*   By: hbousset < hbousset@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 15:00:06 by hbousset          #+#    #+#             */
-/*   Updated: 2025/01/05 10:56:33 by hbousset         ###   ########.fr       */
+/*   Updated: 2025/01/12 11:49:48 by hbousset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,6 @@ t_stack	*create_node(int value)
 		return (NULL);
 	new_node->value = value;
 	new_node->next = NULL;
+	new_node->index = -1;
 	return (new_node);
 }

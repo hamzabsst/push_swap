@@ -6,7 +6,7 @@
 /*   By: hbousset < hbousset@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 14:59:31 by hbousset          #+#    #+#             */
-/*   Updated: 2025/01/04 08:32:11 by hbousset         ###   ########.fr       */
+/*   Updated: 2025/01/12 09:25:16 by hbousset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,9 @@ void	free_stack(t_stack **stack)
 	*stack = NULL;
 }
 
-void	free_errors(t_stack **a)
+void	free_errors(t_stack **stack)
 {
-	free_stack(a);
-	ft_printf("Error\n");
+	free_stack(stack);
+	write(2, "Error\n", 6);
 	exit(EXIT_FAILURE);
 }
