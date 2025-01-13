@@ -6,7 +6,7 @@
 /*   By: hbousset < hbousset@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 10:28:05 by hbousset          #+#    #+#             */
-/*   Updated: 2025/01/12 13:22:44 by hbousset         ###   ########.fr       */
+/*   Updated: 2025/01/13 08:40:29 by hbousset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ void	sort_stack(t_stack **a, t_stack **b)
 	else
 		push_swap(a, b);
 }
-void push_swap(t_stack **a, t_stack **b)
+
+void	push_swap(t_stack **a, t_stack **b)
 {
 	indexing(*a);
 	split_to_b(a, b);

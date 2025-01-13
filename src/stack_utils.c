@@ -6,7 +6,7 @@
 /*   By: hbousset < hbousset@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 09:21:30 by hbousset          #+#    #+#             */
-/*   Updated: 2025/01/04 18:10:35 by hbousset         ###   ########.fr       */
+/*   Updated: 2025/01/13 08:36:00 by hbousset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,22 @@ int	stack_len(t_stack *stack)
 	return (count);
 }
 
+int	is_sorted(t_stack *stack)
+{
+	t_stack	*current;
+
+	if (stack == NULL || stack->next == NULL)
+		return (1);
+	current = stack;
+	while (current->next != NULL)
+	{
+		if (current->value > current->next->value)
+			return (0);
+		current = current->next;
+	}
+	return (1);
+}
+
 t_stack	*is_last(t_stack *head)
 {
 	if (head == NULL)
@@ -34,24 +50,6 @@ t_stack	*is_last(t_stack *head)
 	while (head->next)
 		head = head->next;
 	return (head);
-}
-
-int	find_max(t_stack *stack)
-{
-	int		max;
-	t_stack	*current;
-
-	if (!stack)
-		return (0);
-	max = stack->value;
-	current = stack->next;
-	while (current)
-	{
-		if (current->value > max)
-			max = current->value;
-		current = current->next;
-	}
-	return (max);
 }
 
 int	find_min(t_stack *stack)

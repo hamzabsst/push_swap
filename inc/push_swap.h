@@ -6,7 +6,7 @@
 /*   By: hbousset < hbousset@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 10:13:54 by hbousset          #+#    #+#             */
-/*   Updated: 2025/01/12 13:20:34 by hbousset         ###   ########.fr       */
+/*   Updated: 2025/01/13 08:38:11 by hbousset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,6 @@ typedef struct s_stack
 	struct s_stack	*prev;
 }					t_stack;
 
-typedef struct s_cost {
-	int	cost_a;
-	int	cost_b;
-	int	total_cost;
-} t_cost;
-
 // create stack
 void	init_stack(t_stack **a, char **av);
 void	add_node(t_stack **stack, int value);
@@ -43,15 +37,19 @@ void	free_errors(t_stack **a);
 
 // stack utils
 t_stack	*is_last(t_stack *head);
-int		find_max(t_stack *stack);
+int		is_sorted(t_stack *stack);
 int		stack_len(t_stack *stack);
 int		find_min(t_stack *stack);
 int		find_second_min(t_stack *stack);
 
 // stack utils 2
-int		is_sorted(t_stack *a);
 void	indexing(t_stack *stack);
 int		get_pivot(t_stack *stack);
+void	bring_to_top(t_stack **stack, int target_index);
+void	split_to_b(t_stack **stack_a, t_stack **stack_b);
+int		find_max_index(t_stack *stack);
+void	push_back_to_a(t_stack **stack_a, t_stack **stack_b);
+int		find_position(t_stack *stack, int target_index);
 
 //sorts
 void	sort_3(t_stack **a);
@@ -74,12 +72,6 @@ void	rrr(t_stack **a, t_stack **b);
 
 //test
 void	print(t_stack *stack);
-
 void push_swap(t_stack **stack_a, t_stack **stack_b);
-void bring_to_top(t_stack **stack, int target_index);
-void split_to_b(t_stack **stack_a, t_stack **stack_b);
-int find_max_index(t_stack *stack);
-void push_back_to_a(t_stack **stack_a, t_stack **stack_b);
-int find_position(t_stack *stack, int target_index);
 
 #endif
