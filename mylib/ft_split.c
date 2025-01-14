@@ -6,7 +6,7 @@
 /*   By: hbousset < hbousset@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 14:08:13 by hbousset          #+#    #+#             */
-/*   Updated: 2025/01/04 08:29:53 by hbousset         ###   ########.fr       */
+/*   Updated: 2025/01/14 15:46:11 by hbousset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	count_word(char const *s, char c)
 	counter = 0;
 	while (s[i])
 	{
-		if (s[i] != c && (s[i - 1] == c || i == 0))
+		if ((i == 0 || s[i - 1] == c) && s[i] != c)
 			counter++;
 		i++;
 	}

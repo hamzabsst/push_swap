@@ -6,13 +6,13 @@
 /*   By: hbousset < hbousset@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 15:00:06 by hbousset          #+#    #+#             */
-/*   Updated: 2025/01/12 11:49:48 by hbousset         ###   ########.fr       */
+/*   Updated: 2025/01/14 13:19:50 by hbousset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 
-void	init_stack(t_stack **a, char **av)
+int	init_stack(t_stack **a, char **av)
 {
 	long	value;
 	int		i;
@@ -21,15 +21,16 @@ void	init_stack(t_stack **a, char **av)
 	while (av[i])
 	{
 		if (check_errors(av[i]))
-			free_errors(a);
+			return (1);
 		value = ft_atol(av[i]);
 		if (value > INT_MAX || value < INT_MIN)
-			free_errors(a);
+			return (1);
 		if (check_duplicate(*a, (int)value))
-			free_errors(a);
+			return (1);
 		add_node(a, (int)value);
 		i++;
 	}
+	return (0);
 }
 
 void	add_node(t_stack **stack, int value)
@@ -64,4 +65,13 @@ t_stack	*create_node(int value)
 	new_node->next = NULL;
 	new_node->index = -1;
 	return (new_node);
+}
+
+t_stack	*is_last(t_stack *head)
+{
+	if (head == NULL)
+		return (NULL);
+	while (head->next)
+		head = head->next;
+	return (head);
 }

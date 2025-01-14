@@ -6,7 +6,7 @@
 /*   By: hbousset < hbousset@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 16:19:15 by hbousset          #+#    #+#             */
-/*   Updated: 2025/01/13 08:36:44 by hbousset         ###   ########.fr       */
+/*   Updated: 2025/01/14 10:39:27 by hbousset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,38 +32,55 @@ void	sort_3(t_stack **a)
 	}
 }
 
-void	sort_4(t_stack **a, t_stack **b)
-{
-	int	min;
-
-	min = find_min(*a);
-	while ((*a)->value != min)
-		ra(a);
-	pb(b, a);
-	if (stack_len(*a) == 3)
-		sort_3(a);
-	pa(a, b);
-}
-
 void	sort_5(t_stack **a, t_stack **b)
 {
-	int	pushed;
+	int	min;
+	int	second_min;
 
-	pushed = 0;
-	while (stack_len(*a) > 3 && pushed < 2)
+	min = find_min_value(*a);
+	second_min = find_second_min(*a);
+	while (stack_len(*a) > 3)
 	{
-		if ((*a)->value == find_min(*a) || (*a)->value == find_second_min(*a))
-		{
+		if ((*a)->value == min || (*a)->value == second_min)
 			pb(b, a);
-			pushed++;
-		}
 		else
 			ra(a);
 	}
-	if (stack_len(*a) == 3)
-		sort_3(a);
-	if (stack_len(*b) == 2 && (*b)->value < (*b)->next->value)
+	sort_3(a);
+	if ((*b)->value < (*b)->next->value)
 		sb(b);
 	pa(a, b);
 	pa(a, b);
+}
+
+int	find_min_value(t_stack *stack)
+{
+	int		min;
+
+	min = stack->value;
+	while (stack)
+	{
+		if (stack->value < min)
+			min = stack->value;
+		stack = stack->next;
+	}
+	return (min);
+}
+
+int	find_second_min(t_stack *stack)
+{
+	int		min;
+	int		second_min;
+
+	if (!stack)
+		return (0);
+	min = find_min_value(stack);
+	second_min = INT_MAX;
+	while (stack)
+	{
+		if (stack->value != min && stack->value < second_min)
+			second_min = stack->value;
+		stack = stack->next;
+	}
+	return (second_min);
 }

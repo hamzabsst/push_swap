@@ -6,7 +6,7 @@
 /*   By: hbousset < hbousset@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/01 09:21:30 by hbousset          #+#    #+#             */
-/*   Updated: 2025/01/13 08:36:00 by hbousset         ###   ########.fr       */
+/*   Updated: 2025/01/14 10:39:13 by hbousset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ int	is_sorted(t_stack *stack)
 {
 	t_stack	*current;
 
-	if (stack == NULL || stack->next == NULL)
-		return (1);
 	current = stack;
+	if (current == NULL || current->next == NULL)
+		return (1);
 	while (current->next != NULL)
 	{
 		if (current->value > current->next->value)
@@ -43,43 +43,54 @@ int	is_sorted(t_stack *stack)
 	return (1);
 }
 
-t_stack	*is_last(t_stack *head)
+t_stack	*find_min(t_stack *a)
 {
-	if (head == NULL)
-		return (NULL);
-	while (head->next)
-		head = head->next;
-	return (head);
-}
+	t_stack	*min;
+	t_stack	*i;
 
-int	find_min(t_stack *stack)
-{
-	int		min;
-
-	min = stack->value;
-	while (stack)
+	min = a;
+	i = a->next;
+	while (i)
 	{
-		if (stack->value < min)
-			min = stack->value;
-		stack = stack->next;
+		if (i->value < min->value)
+			min = i;
+		i = i->next;
 	}
 	return (min);
 }
 
-int	find_second_min(t_stack *stack)
+t_stack	*is_cheapest(t_stack *b)
 {
-	int		min;
-	int		second_min;
+	t_stack	*cheapest;
 
-	if (!stack)
-		return (0);
-	min = find_min(stack);
-	second_min = INT_MAX;
-	while (stack)
+	cheapest = b;
+	while (b)
 	{
-		if (stack->value != min && stack->value < second_min)
-			second_min = stack->value;
-		stack = stack->next;
+		if (b->cost < cheapest->cost)
+			cheapest = b;
+		b = b->next;
 	}
-	return (second_min);
+	return (cheapest);
+}
+
+void	ranking(t_stack *stack)
+{
+	t_stack	*current;
+	t_stack	*temp;
+
+	current = stack;
+	if (!stack)
+		return ;
+	while (current)
+	{
+		temp = stack;
+		current->rank = 0;
+		while (temp)
+		{
+			if (current->value > temp->value)
+				current->rank++;
+			temp = temp->next;
+		}
+		current = current->next;
+	}
 }

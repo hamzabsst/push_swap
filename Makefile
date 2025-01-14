@@ -5,6 +5,7 @@ MYLIB_DIR = mylib
 MYLIB = $(MYLIB_DIR)/myLib.a
 
 NAME = push_swap
+NAME_BONUS = checker
 
 SRCS = src/init_stack.c \
 		src/main.c \
@@ -18,7 +19,13 @@ SRCS = src/init_stack.c \
 		src/sorting/tiny_sorts.c \
 		src/sorting/sort_stack.c \
 
+SRCS_BONUS = bonus/checker_bonus.c \
+				bonus/utils_bonus.c \
+				bonus/utils_bonus1.c \
+
 OBJS = $(SRCS:.c=.o)
+
+OBJS_BONUS = $(SRCS_BONUS:.c=.o)
 
 all: $(MYLIB) $(NAME)
 
@@ -31,14 +38,19 @@ $(MYLIB):
 $(NAME): $(OBJS) $(MYLIB)
 		@$(CC) $(CFLAGS) $(OBJS) $(MYLIB) -o $(NAME)
 
+OBJS_NO_MAIN = $(filter-out src/main.o, $(OBJS))
+
+bonus: $(OBJS_BONUS) $(OBJS_NO_MAIN) $(MYLIB)
+		$(CC) $(CFLAGS) $(OBJS_BONUS) $(OBJS_NO_MAIN) $(MYLIB) -o $(NAME_BONUS)
+
 clean:
-		@rm -f $(OBJS)
+		@rm -f $(OBJS) $(OBJS_BONUS)
 		@$(MAKE) clean -C $(MYLIB_DIR)
 
 fclean: clean
-		@rm -f $(NAME)
+		@rm -f $(NAME) $(NAME_BONUS)
 		@$(MAKE) fclean -C $(MYLIB_DIR)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus

@@ -6,7 +6,7 @@
 /*   By: hbousset < hbousset@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 15:54:37 by hbousset          #+#    #+#             */
-/*   Updated: 2024/12/29 13:23:54 by hbousset         ###   ########.fr       */
+/*   Updated: 2025/01/14 22:04:30 by hbousset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 
 // Macros
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
+#  define BUFFER_SIZE 1024
 # endif
 
 // Structure
@@ -94,5 +94,7 @@ char	*ft_strjoin_gnl(char *s1, char *s2);
 
 // additional functions
 long	ft_atol(const char	*str);
+char	*ft_strcpy(char *s1, char *s2);
+int		ft_strcmp(const char *s1, const char *s2);
 
 #endif

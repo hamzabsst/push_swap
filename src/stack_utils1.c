@@ -6,143 +6,96 @@
 /*   By: hbousset < hbousset@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 10:36:25 by hbousset          #+#    #+#             */
-/*   Updated: 2025/01/13 08:36:53 by hbousset         ###   ########.fr       */
+/*   Updated: 2025/01/14 11:20:48 by hbousset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 
-void	indexing(t_stack *stack)
+void	is_above_mid(t_stack *stack)
 {
-	t_stack	*current;
-	t_stack	*temp;
 	int		i;
-	int		min;
+	int		mid;
 
+	if (!stack)
+		return ;
+	mid = stack_len(stack) / 2;
 	i = 0;
-	current = stack;
-	while (current)
+	while (stack)
 	{
-		min = INT_MAX;
-		temp = stack;
-		while (temp)
-		{
-			if (temp->value < min && temp->index == -1)
-				min = temp->value;
-			temp = temp->next;
-		}
-		temp = stack;
-		while (temp)
-		{
-			if (temp->value == min && temp->index == -1)
-			{
-				temp->index = i++;
-				break;
-			}
-			temp = temp->next;
-		}
-		current = current->next;
-	}
-}
-
-int	get_pivot(t_stack *stack)
-{
-	t_stack	*temp;
-	int		size;
-	int		middle;
-
-	size = stack_len(stack);
-	middle = size / 2;
-	temp = stack;
-	while (temp)
-	{
-		if (temp->index == middle)
-			return (temp->value);
-		temp = temp->next;
-	}
-	return (0);
-}
-
-void split_to_b(t_stack **a, t_stack **b)
-{
-	int	size;
-	int	pushed;
-
-	size = stack_len(*a);
-	pushed = 0;
-	while (pushed < size - 3)
-	{
-		if ((*a)->index < size - 3)
-		{
-			pb(b, a);
-			pushed++;
-		}
+		stack->index = i;
+		if (i <= mid)
+			stack->above_mid = 1;
 		else
-		{
-			ra(a);
-		}
+			stack->above_mid = 0;
+		stack = stack->next;
+		i++;
 	}
 }
 
-int find_max_index(t_stack *stack)
+void	find_target(t_stack *a, t_stack *b)
 {
-	t_stack *temp = stack;
-	int max_index = temp->index;
-
-	while (temp)
-	{
-		if (temp->index > max_index)
-			max_index = temp->index;
-		temp = temp->next;
-	}
-	return max_index;
-}
-
-void	push_back_to_a(t_stack **a, t_stack **b)
-{
-	int	max_index;
-
-	while (*b)
-	{
-		max_index = find_max_index(*b);
-		bring_to_top(b, max_index);
-		pa(a, b);
-		if ((*a)->index > (*a)->next->index)
-			ra(a);
-	}
-}
-
-void	bring_to_top(t_stack **b, int target_index)
-{
-	int	pos;
-	int	size;
-
-	size = stack_len(*b);
-	pos = find_position(*b, target_index);
-	if (pos == -1)
-		return;
-	if (pos <= size / 2)
-	{
-		while ((*b)->index != target_index)
-			rb(b);
-	}
-	else
-	{
-		while ((*b)->index != target_index)
-				rrb(b);
-	}
-}
-
-int find_position(t_stack *b, int target_index)
-{
-	int position = 0;
+	t_stack	*target;
+	t_stack	*current;
+	int		closest_value;
 
 	while (b)
 	{
-		if (b->index == target_index)
-			return (position);
+		target = NULL;
+		closest_value = INT_MAX;
+		current = a;
+		while (current)
+		{
+			if (current->value > b->value && current->value < closest_value)
+			{
+				closest_value = current->value;
+				target = current;
+			}
+			current = current->next;
+		}
+		if (!target)
+			target = find_min(a);
+		b->target = target;
 		b = b->next;
-		position++;
 	}
-	return (-1);
+}
+
+static int	calc_cost(int index, int size, int above_mid)
+{
+	if (above_mid)
+		return (index);
+	return (size - index);
+}
+
+static int	total(int a, int b, int above_a, int above_b)
+{
+	if ((above_a && above_b) || (!above_a && !above_b))
+	{
+		if (a > b)
+			return (a);
+		else
+			return (b);
+	}
+	return (a + b);
+}
+
+t_stack	*calculate_cost(t_stack *a, t_stack *b)
+{
+	t_stack	*stack;
+	int		size_a;
+	int		size_b;
+	int		cost_b;
+	int		cost_a;
+
+	stack = b;
+	size_a = stack_len(a);
+	size_b = stack_len(b);
+	while (b)
+	{
+		cost_b = calc_cost(b->index, size_b, b->above_mid);
+		cost_a = calc_cost(b->target->index, size_a, b->target->above_mid);
+		b->cost = total(cost_a, cost_b, b->above_mid, b->target->above_mid);
+		b = b->next;
+	}
+	return (is_cheapest(stack));
 }
