@@ -40,8 +40,11 @@ $(NAME): $(OBJS) $(MYLIB)
 
 OBJS_NO_MAIN = $(filter-out src/main.o, $(OBJS))
 
-bonus: $(OBJS_BONUS) $(OBJS_NO_MAIN) $(MYLIB)
+$(NAME_BONUS): $(OBJS_BONUS) $(OBJS_NO_MAIN) $(MYLIB)
 		$(CC) $(CFLAGS) $(OBJS_BONUS) $(OBJS_NO_MAIN) $(MYLIB) -o $(NAME_BONUS)
+		@touch $(NAME_BONUS)
+
+bonus: $(NAME_BONUS)
 
 clean:
 		@rm -f $(OBJS) $(OBJS_BONUS)
