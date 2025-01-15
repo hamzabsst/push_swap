@@ -6,7 +6,7 @@
 /*   By: hbousset < hbousset@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 15:00:06 by hbousset          #+#    #+#             */
-/*   Updated: 2025/01/14 13:19:50 by hbousset         ###   ########.fr       */
+/*   Updated: 2025/01/15 13:29:53 by hbousset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,16 @@ t_stack	*is_last(t_stack *head)
 	while (head->next)
 		head = head->next;
 	return (head);
+}
+
+int	skip_whitespace(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] && (str[i] == ' ' || str[i] == '\t'))
+		i++;
+	if (str[i] == '\0')
+		return (0);
+	return (1);
 }

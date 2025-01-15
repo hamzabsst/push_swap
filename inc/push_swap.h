@@ -6,7 +6,7 @@
 /*   By: hbousset < hbousset@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 10:13:54 by hbousset          #+#    #+#             */
-/*   Updated: 2025/01/14 11:20:58 by hbousset         ###   ########.fr       */
+/*   Updated: 2025/01/15 13:26:53 by hbousset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,14 @@ int		check_errors(char *av);
 int		check_duplicate(t_stack *a, int value);
 void	free_stack(t_stack **stack);
 void	free_errors(t_stack **a);
+void	*free_split(char **str);
 
 // create stack
 int		init_stack(t_stack **a, char **av);
 void	add_node(t_stack **stack, int value);
 t_stack	*create_node(int value);
 t_stack	*is_last(t_stack *stack);
+int		skip_whitespace(char *str);
 
 // stack utils
 int		is_sorted(t_stack *stack);

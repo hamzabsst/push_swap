@@ -1,5 +1,5 @@
 CC = cc
-CFLAGS = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra -g
 
 MYLIB_DIR = mylib
 MYLIB = $(MYLIB_DIR)/myLib.a
@@ -42,7 +42,6 @@ OBJS_NO_MAIN = $(filter-out src/main.o, $(OBJS))
 
 $(NAME_BONUS): $(OBJS_BONUS) $(OBJS_NO_MAIN) $(MYLIB)
 		$(CC) $(CFLAGS) $(OBJS_BONUS) $(OBJS_NO_MAIN) $(MYLIB) -o $(NAME_BONUS)
-		@touch $(NAME_BONUS)
 
 bonus: $(NAME_BONUS)
 

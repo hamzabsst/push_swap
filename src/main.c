@@ -6,27 +6,11 @@
 /*   By: hbousset < hbousset@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/28 10:52:38 by hbousset          #+#    #+#             */
-/*   Updated: 2025/01/14 20:32:09 by hbousset         ###   ########.fr       */
+/*   Updated: 2025/01/15 13:27:49 by hbousset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
-
-static void	*free_split(char **str)
-{
-	int	i;
-
-	if (!str)
-		return (NULL);
-	i = 0;
-	while (str[i])
-	{
-		free (str[i]);
-		i++;
-	}
-	free(str);
-	return (NULL);
-}
 
 static int	cleanup_and_exit(t_stack **a, t_stack **b, char **arv, int flag)
 {
@@ -87,15 +71,12 @@ static int	handle_args(char **av, int ac, char ***arv, int *split_flag)
 	return (0);
 }
 
-int	main(int ac, char **av)
+static int	validate_and_init(int ac, char **av, t_stack **a, t_stack **b)
 {
-	t_stack	*a;
-	t_stack	*b;
 	char	**arv;
 	int		split_flag;
+	int		i;
 
-	a = NULL;
-	b = NULL;
 	split_flag = 0;
 	if (ac == 1 || (ac == 2 && !av[1][0]))
 	{
@@ -103,13 +84,32 @@ int	main(int ac, char **av)
 			write(2, "Error\n", 6);
 		return (1);
 	}
+	i = 0;
+	while (++i < ac)
+	{
+		if (!av[i] || !av[i][0] || !skip_whitespace(av[i]))
+			return (write(2, "Error\n", 6), 1);
+	}
 	if (handle_args(av, ac, &arv, &split_flag))
 		return (1);
-	if (init_stack(&a, arv) != 0)
-		return (cleanup_and_exit(&a, &b, arv, split_flag));
+	if (init_stack(a, arv) != 0)
+		return (cleanup_and_exit(a, b, arv, split_flag));
 	if (split_flag)
 		free_split(arv);
+	return (0);
+}
+
+int	main(int ac, char **av)
+{
+	t_stack	*a;
+	t_stack	*b;
+
+	a = NULL;
+	b = NULL;
+	if (validate_and_init(ac, av, &a, &b))
+		return (1);
 	if (!is_sorted(a))
 		sort_stack(&a, &b);
 	free_stack(&a);
+	free_stack(&b);
 }

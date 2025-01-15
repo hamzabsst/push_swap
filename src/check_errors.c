@@ -6,7 +6,7 @@
 /*   By: hbousset < hbousset@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 14:59:31 by hbousset          #+#    #+#             */
-/*   Updated: 2025/01/14 11:00:44 by hbousset         ###   ########.fr       */
+/*   Updated: 2025/01/15 13:25:54 by hbousset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,20 @@ void	free_errors(t_stack **stack)
 		free_stack(stack);
 	write(2, "Error\n", 6);
 	exit(EXIT_FAILURE);
+}
+
+void	*free_split(char **str)
+{
+	int	i;
+
+	if (!str)
+		return (NULL);
+	i = 0;
+	while (str[i])
+	{
+		free (str[i]);
+		i++;
+	}
+	free(str);
+	return (NULL);
 }

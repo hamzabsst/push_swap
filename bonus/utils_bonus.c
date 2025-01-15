@@ -6,27 +6,11 @@
 /*   By: hbousset < hbousset@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 21:51:27 by hbousset          #+#    #+#             */
-/*   Updated: 2025/01/14 22:44:16 by hbousset         ###   ########.fr       */
+/*   Updated: 2025/01/15 13:35:22 by hbousset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker_bonus.h"
-
-void	*free_split(char **str)
-{
-	int	i;
-
-	if (!str)
-		return (NULL);
-	i = 0;
-	while (str[i])
-	{
-		free (str[i]);
-		i++;
-	}
-	free(str);
-	return (NULL);
-}
 
 void	push(t_stack **dest, t_stack **src)
 {
