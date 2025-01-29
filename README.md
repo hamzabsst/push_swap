@@ -1,7 +1,7 @@
 # Push_Swap 🔢
 
-Found a parsing error or memory leak? 🐞
-Please open a GitHub Issue or contact me directly in discord @hamzabsst . I appreciate any feedback to improve this project!
+- **Found a parsing error or memory leak? 🐞**
+```Please open a GitHub Issue or contact me directly in discord @hamzabsst . I appreciate any feedback to improve this project!```
 A 42 School project that sorts integers on a stack using a limited set of operations with optimal efficiency.
 
 ## Features 🚀
