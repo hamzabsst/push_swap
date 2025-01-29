@@ -1,6 +1,7 @@
 # Push_Swap 🔢
 
 - **Found a parsing error or memory leak? 🐞**
+- 
 ```Please open a GitHub Issue or contact me directly in discord @hamzabsst .```
 
 ``` I appreciate any feedback to improve this project!```
