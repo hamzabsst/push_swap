@@ -6,7 +6,7 @@
 /*   By: hbousset < hbousset@student.1337.ma>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 22:16:27 by hbousset          #+#    #+#             */
-/*   Updated: 2025/01/15 13:34:56 by hbousset         ###   ########.fr       */
+/*   Updated: 2025/02/02 16:17:05 by hbousset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,10 +99,10 @@ char	*get_next(int fd)
 		readbyte = read(fd, &buff, 1);
 		if (readbyte <= 0)
 			break ;
-		if (buff == '\n')
-			break ;
 		line[i++] = buff;
 		line[i] = 0;
+		if (buff == '\n')
+			break ;
 	}
 	if (!*line)
 		return (NULL);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbousset < hbousset@student.1337.ma>       +#+  +:+       +#+        */
+/*   By: hbousset <hbousset@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 12:20:15 by hbousset          #+#    #+#             */
-/*   Updated: 2025/01/15 13:33:54 by hbousset         ###   ########.fr       */
+/*   Updated: 2025/02/02 16:18:11 by hbousset         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 
 static void	do_double_command(t_stack **a, t_stack **b, char *line)
 {
-	if (!ft_strcmp(line, "rr"))
+	if (!ft_strcmp(line, "rr\n"))
 	{
 		a = rotate(a);
 		b = rotate(b);
 	}
-	else if (!ft_strcmp(line, "rrr"))
+	else if (!ft_strcmp(line, "rrr\n"))
 	{
 		a = r_rotate(a);
 		b = r_rotate(b);
 	}
-	else if (!ft_strcmp(line, "ss"))
+	else if (!ft_strcmp(line, "ss\n"))
 	{
 		a = swap(a);
 		b = swap(b);
@@ -35,21 +35,21 @@ static void	do_double_command(t_stack **a, t_stack **b, char *line)
 
 void	do_command(t_stack **a, t_stack **b, char *line)
 {
-	if (!ft_strcmp(line, "pa"))
+	if (!ft_strcmp(line, "pa\n"))
 		push(a, b);
-	else if (!ft_strcmp(line, "pb"))
+	else if (!ft_strcmp(line, "pb\n"))
 		push(b, a);
-	else if (!ft_strcmp(line, "ra"))
+	else if (!ft_strcmp(line, "ra\n"))
 		a = rotate(a);
-	else if (!ft_strcmp(line, "rb"))
+	else if (!ft_strcmp(line, "rb\n"))
 		b = rotate(b);
-	else if (!ft_strcmp(line, "rra"))
+	else if (!ft_strcmp(line, "rra\n"))
 		a = r_rotate(a);
-	else if (!ft_strcmp(line, "rrb"))
+	else if (!ft_strcmp(line, "rrb\n"))
 		b = r_rotate(b);
-	else if (!ft_strcmp(line, "sa"))
+	else if (!ft_strcmp(line, "sa\n"))
 		a = swap(a);
-	else if (!ft_strcmp(line, "sb"))
+	else if (!ft_strcmp(line, "sb\n"))
 		b = swap(b);
 	else
 		do_double_command(a, b, line);
